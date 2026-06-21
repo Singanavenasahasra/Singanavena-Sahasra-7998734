@@ -1,0 +1,221 @@
+/*******************************************************************************
+  DATABASE CLEAN REBOOT
+  (Drops existing tables to prevent "table already exists" errors)
+*******************************************************************************/
+DROP TABLE IF EXISTS AuditLog;
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS Loans;
+DROP TABLE IF EXISTS Transactions;
+DROP TABLE IF EXISTS Accounts;
+DROP TABLE IF EXISTS Customers;
+
+/*******************************************************************************
+  DATABASE CORE TABLES INFRASTRUCTURE SCHEMA
+*******************************************************************************/
+
+-- [Table 1: Customers Storage]
+CREATE TABLE Customers (
+    CustomerID INTEGER PRIMARY KEY,
+    Name TEXT,
+    DOB TEXT,
+    Balance REAL,
+    LastModified TEXT,
+    IsVIP TEXT DEFAULT 'FALSE'
+);
+
+-- [Table 2: Financial Accounts Storage]
+CREATE TABLE Accounts (
+    AccountID INTEGER PRIMARY KEY,
+    CustomerID INTEGER,
+    AccountType TEXT,
+    Balance REAL,
+    LastModified TEXT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- [Table 3: Transactions Ledger]
+CREATE TABLE Transactions (
+    TransactionID INTEGER PRIMARY KEY,
+    AccountID INTEGER,
+    TransactionDate TEXT,
+    Amount REAL,
+    TransactionType TEXT,
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+-- [Table 4: Debt & Loans Tracking]
+CREATE TABLE Loans (
+    LoanID INTEGER PRIMARY KEY,
+    CustomerID INTEGER,
+    LoanAmount REAL,
+    InterestRate REAL,
+    StartDate TEXT,
+    EndDate TEXT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- [Table 5: Enterprise Employees Ledger]
+CREATE TABLE Employees (
+    EmployeeID INTEGER PRIMARY KEY,
+    Name TEXT,
+    Position TEXT,
+    Salary REAL,
+    Department TEXT,
+    HireDate TEXT
+);
+
+-- [Table 6: Automation Event Audit Logging]
+CREATE TABLE AuditLog (
+    LogID INTEGER PRIMARY KEY AUTOINCREMENT,
+    TransactionID INTEGER,
+    AccountID INTEGER,
+    Amount REAL,
+    TransactionType TEXT,
+    LogDate TEXT
+);
+
+/*******************************************************************************
+  INITIAL RECORDS MOCK SEED DATA
+*******************************************************************************/
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (1, 'John Doe', '1955-05-15', 11000, date('now'));
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (2, 'Jane Smith', '1990-07-20', 1500, date('now'));
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (1, 1, 'Savings', 11000, date('now'));
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (2, 2, 'Checking', 1500, date('now'));
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (1, 1, date('now'), 200, 'Deposit');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (2, 2, date('now'), 300, 'Withdrawal');
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (1, 1, 5000, 5, date('now'), date('now', '+1 month'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (1, 'Alice Johnson', 'Manager', 70000, 'HR', '2015-06-15');
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (2, 'Bob Brown', 'Developer', 60000, 'IT', '2017-03-20');
+
+
+/*******************************************************************************
+  EXERCISE 5: AUTOMATED TRIGGER DATA RULES
+*******************************************************************************/
+
+-- [EXERCISE 5 - SCENARIO 1: UpdateCustomerLastModified Sync Rule]
+CREATE TRIGGER Trg_UpdateCustomerLastModified
+AFTER UPDATE ON Customers
+BEGIN
+    UPDATE Customers SET LastModified = date('now') WHERE CustomerID = NEW.CustomerID;
+END;
+
+-- [EXERCISE 5 - SCENARIO 2: LogTransaction Automated Audit Pipeline]
+CREATE TRIGGER Trg_LogTransaction
+AFTER INSERT ON Transactions
+BEGIN
+    INSERT INTO AuditLog (TransactionID, AccountID, Amount, TransactionType, LogDate)
+    VALUES (NEW.TransactionID, NEW.AccountID, NEW.Amount, NEW.TransactionType, date('now'));
+END;
+
+-- [EXERCISE 5 - SCENARIO 3: CheckTransactionRules Business Policy Validation]
+CREATE TRIGGER Trg_CheckTransactionRules
+BEFORE INSERT ON Transactions
+BEGIN
+    SELECT CASE 
+        WHEN NEW.TransactionType = 'Deposit' AND NEW.Amount <= 0 
+        THEN RAISE(ABORT, 'Deposit amount must be positive.')
+        WHEN NEW.TransactionType = 'Withdrawal' AND NEW.Amount > (SELECT Balance FROM Accounts WHERE AccountID = NEW.AccountID)
+        THEN RAISE(ABORT, 'Withdrawal exceeds current balance.')
+    END;
+END;
+
+
+/*******************************************************************************
+  EXERCISE 2: ERROR HANDLING & TRANSACTION SOLVENCY CODES
+*******************************************************************************/
+
+-- [EXERCISE 2 - SCENARIO 1: SafeTransferFunds Asset Transfer Safeguard]
+UPDATE Accounts SET Balance = Balance - 500 WHERE AccountID = 1 AND Balance >= 500;
+UPDATE Accounts SET Balance = Balance + 500 WHERE AccountID = 2 AND (SELECT Balance FROM Accounts WHERE AccountID = 1) >= 500;
+
+-- [EXERCISE 2 - SCENARIO 2: UpdateSalary Exception Mitigation Optimization]
+UPDATE Employees SET Salary = Salary * 1.10 WHERE EmployeeID = 2;
+
+-- [EXERCISE 2 - SCENARIO 3: AddNewCustomer Collision Intercept Prevention]
+INSERT OR IGNORE INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (3, 'New User', '1995-01-01', 500, date('now'));
+
+
+/*******************************************************************************
+  EXERCISE 3: CONTEXT PROCEDURAL BATCH ACTIONS
+*******************************************************************************/
+
+-- [EXERCISE 3 - SCENARIO 1: ProcessMonthlyInterest Bulk Yield Allocation]
+UPDATE Accounts SET Balance = Balance * 1.01, LastModified = date('now') WHERE AccountType = 'Savings';
+
+-- [EXERCISE 3 - SCENARIO 2: UpdateEmployeeBonus Corporate Incentive Scaling]
+UPDATE Employees SET Salary = Salary * 1.05 WHERE Department = 'HR';
+
+-- [EXERCISE 3 - SCENARIO 3: TransferFunds Basic Multi-Row Asset Shift]
+UPDATE Accounts SET Balance = Balance - 200 WHERE AccountID = 1 AND Balance >= 200;
+UPDATE Accounts SET Balance = Balance + 200 WHERE AccountID = 2 AND changes() > 0;
+
+
+/*******************************************************************************
+  EXERCISE 4: COMPUTE VALUES & MATH FUNCTION LINES
+*******************************************************************************/
+
+-- [EXERCISE 4 - SCENARIO 1: CalculateAge Temporal Date Transform]
+SELECT Name, (strftime('%Y', 'now') - strftime('%Y', DOB)) AS CalculatedAge FROM Customers;
+
+-- [EXERCISE 4 - SCENARIO 2: CalculateMonthlyInstallment Amortized Projections]
+SELECT LoanID, LoanAmount, ((LoanAmount * (1 + (InterestRate / 100))) / 60) AS MonthlyInstallment FROM Loans;
+
+-- [EXERCISE 4 - SCENARIO 3: HasSufficientBalance Predicate Assertion Evaluation]
+SELECT AccountID, Balance, CASE WHEN Balance >= 500 THEN 'TRUE' ELSE 'FALSE' END AS HasSufficientBalance FROM Accounts;
+
+
+/*******************************************************************************
+  EXERCISE 1: DATA PIPELINE STATE CONTROL STRUCTURES
+*******************************************************************************/
+
+-- [EXERCISE 1 - SCENARIO 1: Age Interest Discount Modification Action]
+UPDATE Loans 
+SET InterestRate = InterestRate - 1 
+WHERE CustomerID IN (
+    SELECT CustomerID FROM Customers WHERE (strftime('%Y', 'now') - strftime('%Y', DOB)) > 60
+);
+
+-- [EXERCISE 1 - SCENARIO 2: VIP Premium Level Identification Tier Allocation]
+UPDATE Customers SET IsVIP = 'TRUE' WHERE Balance > 10000;
+
+-- [EXERCISE 1 - SCENARIO 3: Maturity Alert Reminders Expiry Lookahead Queries]
+SELECT c.Name, l.LoanID, l.EndDate 
+FROM Loans l 
+JOIN Customers c ON l.CustomerID = c.CustomerID 
+WHERE l.EndDate BETWEEN date('now') AND date('now', '+30 days');
+
+
+/*******************************************************************************
+  EXERCISES 6 & 7: EXPLICIT ROW STREAM SELECTIONS (CURSORS / ENCAPSULATIONS)
+*******************************************************************************/
+
+-- [EXERCISE 6 / EXERCISE 7 - SCENARIO 1: Monthly Profile Statement Cursor Query Output]
+SELECT c.Name, t.AccountID, t.TransactionID, t.Amount, t.TransactionType 
+FROM Transactions t
+JOIN Accounts a ON t.AccountID = a.AccountID
+JOIN Customers c ON a.CustomerID = c.CustomerID
+WHERE strftime('%m', t.TransactionDate) = strftime('%m', 'now');
+
+-- [EXERCISE 6 / EXERCISE 7 - SCENARIO 2: Mass Overhead Service Cost Deductions]
+UPDATE Accounts SET Balance = Balance - 25, LastModified = date('now');
+
+-- [EXERCISE 6 / EXERCISE 7 - SCENARIO 3: Asset Portfolio Interest Scale Alteration]
+UPDATE Loans SET InterestRate = InterestRate + 0.25;
