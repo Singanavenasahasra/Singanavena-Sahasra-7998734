@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4: Column Layouts and Grid Classes</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <style>
+        .display-panel {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <!-- 4.1: Two-Column Sidebar/Content Layout -->
+        <h4 class="text-secondary fw-bold mb-3">Exercise 4.1: Sidebar Dashboard Grid</h4>
+        <div class="row mb-5">
+            <aside class="col-md-3">
+                <div class="display-panel bg-warning-subtle fw-bold text-warning-emphasis">Sidebar Area (col-md-3)</div>
+            </aside>
+            <main class="col-md-9">
+                <div class="display-panel bg-primary-subtle fw-bold text-primary-emphasis">Main Content Tracking Viewport (col-md-9)</div>
+            </main>
+        </div>
+
+        <!-- 4.2: Four-Column Equal Width Layout -->
+        <h4 class="text-secondary fw-bold mb-3">Exercise 4.2: Four-Column Row Matrix</h4>
+        <div class="row">
+            <div class="col-sm-3"><div class="display-panel shadow-sm">Block 1 (col-sm-3)</div></div>
+            <div class="col-sm-3"><div class="display-panel shadow-sm">Block 2 (col-sm-3)</div></div>
+            <div class="col-sm-3"><div class="display-panel shadow-sm">Block 3 (col-sm-3)</div></div>
+            <div class="col-sm-3"><div class="display-panel shadow-sm">Block 4 (col-sm-3)</div></div>
+        </div>
+    </div>
+
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

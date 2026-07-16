@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 16: Positioning Utilities</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body class="bg-light" style="padding-bottom: 80px;">
+
+    <div class="container my-5 text-center">
+        <h4 class="text-secondary fw-bold mb-4">Exercise 16.2: Absolute Overlay Placement</h4>
+        
+        <!-- 16.2 Parent container must be relative so child element positions correctly inside it -->
+        <div class="position-relative d-inline-block bg-white p-3 border rounded shadow shadow-lg">
+            <img src="https://picsum.photos/id/60/260/140" class="rounded" alt="System Dashboard Blueprint View">
+            
+            <!-- Absolute Positioning Badge anchoring to the top-right corner boundary corner edge -->
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm">
+                Live Stream
+            </span>
+        </div>
+    </div>
+
+    <!-- 16.1: Fixed Sticky Footer Component -->
+    <footer class="position-fixed bottom-0 start-0 w-100 bg-dark text-white text-center py-3 shadow-lg border-top border-secondary">
+        <span class="small font-weight-light">&copy; 2026 Sticky Footer Node Alignment Framework</span>
+    </footer>
+
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
