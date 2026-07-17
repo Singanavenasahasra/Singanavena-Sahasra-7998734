@@ -1,4 +1,0 @@
-spring:
-  security:
-    jwt:
-      secret: ThisIsMySuperSecretKeyForJWTTokenSigning2026!
