@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3: Responsive Grid Breakpoints</title>
+    <!-- Local Compiled Bootstrap CSS -->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <style>
+        .grid-box {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <h3 class="mb-4 text-center text-primary fw-bold">Exercise 3: Fluid Grid Breakpoints</h3>
+        
+        <!-- Responsive Row Matrix Container -->
+        <div class="row">
+            <!-- 12 slots on mobile (stacked), 6 slots on tablet (2 per row), 4 slots on desktop (3 per row) -->
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="grid-box shadow-sm">Column Asset A</div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="grid-box shadow-sm">Column Asset B</div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="grid-box shadow-sm">Column Asset C</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local Compiled Bootstrap JS -->
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

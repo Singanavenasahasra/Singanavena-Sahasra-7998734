@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9; /* Fallback internal color */
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header id="mainHeader">
+        <h1>City Central Portal</h1>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#news">Bulletin</a></li>
+                <li><a href="#admin">Schedule</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 90vw; margin: 0 auto; padding: 20px;">
+        
+        <section id="home">
+            <h2 style="color: #e74c3c; text-transform: uppercase;">Emergency Notice & Updates</h2>
+            <p>Welcome to the newly designed town portal. Please review upcoming events below.</p>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Community Events</h2>
+            <div class="events-grid">
+                
+                <div class="eventCard">
+                    <h3>Farmers Market</h3>
+                    <p>Support local growers and artisans this weekend at the central square plaza.</p>
+                    <button class="cta-button">View Details</button>
+                </div>
+
+                <div class="eventCard">
+                    <h3>Charity Fun Run</h3>
+                    <p>Join our annual 5k marathon run to raise infrastructure funds for local neighborhood parks.</p>
+                    <button class="cta-button">Register Now</button>
+                </div>
+
+                <div class="eventCard hidden-card">
+                    <h3>Private Council Gala</h3>
+                    <p>This card represents hidden/tentative scheduling data.</p>
+                    <button class="cta-button">Closed</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Community Bulletin Board</h2>
+            <article class="news-article">
+                <h3>The Daily Civic Gazette</h3>
+                <p>Our local municipality is undergoing significant green initiatives over the upcoming seasons. Tree-planting drives have scaled up across suburban spaces, showing a distinct drop in heat island trends. Neighbors are highly encouraged to chip in by maintaining public curbsides and shifting towards composting frameworks.</p>
+                <p>In addition to environmental adjustments, infrastructure repairs on Elm Street are nearing an accelerated completion date. Fresh pedestrian walkways, structural bike paths, and bright energy-efficient LED streetlamps have been deployed to promote micro-mobility safely. Drop by the regular Friday city assemblies to voice your opinions on future layout strategies.</p>
+            </article>
+        </section>
+
+        <section id="admin">
+            <h2>Official Events Administration Timetable</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Event ID</th>
+                        <th>Event Name</th>
+                        <th>Location Coordinates</th>
+                        <th>Max Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1024</td>
+                        <td>Farmers Market</td>
+                        <td>Central Square Plaza</td>
+                        <td>250 Residents</td>
+                    </tr>
+                    <tr>
+                        <td>#1025</td>
+                        <td>Charity Fun Run</td>
+                        <td>Community Park Loop</td>
+                        <td>500 Runners</td>
+                    </tr>
+                    <tr>
+                        <td>#1026</td>
+                        <td>Town Hall Meeting</td>
+                        <td>Council Assembly Auditorium</td>
+                        <td>120 Attendees</td>
+                    </tr>
+                    <tr>
+                        <td>#1027</td>
+                        <td>Youth Art Festival</td>
+                        <td>District Library Wing</td>
+                        <td>80 Guests</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="contact">
+             <h2>Quick Inquiries</h2>
+             <form style="max-width: 400px; margin-top: 15px;">
+                 <label style="display:block; margin-bottom:5px; font-weight:bold;">Message Box:</label>
+                 <textarea class="form-input" rows="3" style="width:100%; padding:10px; border: 1px solid #ccc; border-radius:4px;" placeholder="Click inside to see the CSS outline effect..."></textarea>
+             </form>
+         </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local City Council Portal. All design metrics match responsive breakpoints.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 11: Cards & Media Layout Configurations</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <!-- 11.1 & 15: Avatar Profile Card Configuration -->
+        <div class="card shadow-lg rounded-4 p-3 border-0 bg-white text-center mb-5" style="max-width: 320px; margin: 0 auto;">
+            <!-- 15.1 Rounded Circle + Custom Borders -->
+            <img src="https://picsum.photos/id/64/150/150" class="card-img-top rounded-circle border border-primary border-3 mx-auto mt-3 shadow-sm" style="width: 110px; height: 110px;" alt="User Profile Picture">
+            <div class="card-body">
+                <h5 class="card-title fw-bold m-0">Ms. R Bhavana</h5>
+                <p class="card-text text-muted small mt-1">Computer Operations Coordinator</p>
+                <div class="alert alert-info py-2 small m-0 fw-bold rounded-pill shadow-inner">SysID: 23RH1A0495</div>
+            </div>
+        </div>
+
+        <!-- 11.2 & 13.2: Modern Flexbox Media Integration Strip -->
+        <!-- bg-gradient applied over bg-dark creates subtle sheen depths -->
+        <div class="d-flex align-items-center bg-gradient bg-dark text-white p-4 rounded-3 shadow">
+            <!-- Image token locked tightly to left boundary wall alignment parameters -->
+            <img src="https://picsum.photos/id/102/70/70" class="flex-shrink-0 me-3 rounded border border-light shadow-sm" alt="Framework Icon">
+            <div>
+                <h5 class="fw-bold mb-1">Exercise 11.2: Media Object Text Flow Block</h5>
+                <p class="m-0 small text-secondary">The internal layout engine uses fluid flex alignments to lock this vector profile icon asset directly to the left wall boundary of the statement brief context seamlessly.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 8: Bootstrap Registration & Login Forms</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5" style="max-width: 500px;">
+        <div class="card p-4 shadow border-0 bg-white">
+            <h3 class="text-center fw-bold text-dark mb-4">Account Entry Gateway</h3>
+            <form>
+                <!-- 8.2: Form Floating Email Component -->
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+                    <label for="floatingEmail">Electronic Email Address</label>
+                </div>
+
+                <!-- 8.1: Input Group Addon for verification tokens -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="user-addon-addon">@</span>
+                    <input type="text" class="form-control" placeholder="Unique Account Handle" aria-describedby="user-addon-addon" required>
+                </div>
+
+                <!-- 8.1: Form Check Checkbox Component -->
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" id="termsBox" required>
+                    <label class="form-check-label small text-muted" for="termsBox">
+                        I authorize session data caching routines on this computer.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">Execute Gateway Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
