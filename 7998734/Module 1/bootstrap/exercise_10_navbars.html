@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 10: Navigation and Navbars</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+    <!-- 10.1: Main Responsive Navbar with Search Form -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="#">PortalCore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#exerciseNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="exerciseNavDropdown">
+                <!-- 6.1: Grid Flex Controls changing column-to-row automatically -->
+                <ul class="navbar-nav d-flex flex-column flex-md-row gap-1">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Database Indicies</a></li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search parameters..." aria-label="Search">
+                    <button class="btn btn-success" type="submit">Execute</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- 10.2: Nav Pills Tab Layout -->
+        <h5 class="fw-bold text-muted mb-3">Exercise 10.2: Navigation Pills Array</h5>
+        <ul class="nav nav-pills bg-white p-2 border rounded shadow-sm">
+            <li class="nav-item"><a class="nav-link active" href="#">System Metrics</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Telemetry Graphs</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Transaction Invoices</a></li>
+        </ul>
+    </div>
+
+    <script src="CSS/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
