@@ -1,0 +1,12 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: payment-service
+resilience4j.circuitbreaker:
+  instances:
+    thirdPartyPaymentBreaker:
+      slidingWindowSize: 5
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000ms
+      permittedNumberOfCallsInHalfOpenState: 2
