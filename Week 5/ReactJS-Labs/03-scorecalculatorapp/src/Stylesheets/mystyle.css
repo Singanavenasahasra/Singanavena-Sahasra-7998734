@@ -1,0 +1,25 @@
+.scoreCard {
+  border: 2px solid #0056b3;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scoreCard h2 {
+  color: #0056b3;
+  text-align: center;
+  margin-top: 0;
+}
+
+.scoreElement {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.scoreElement strong {
+  color: #333;
+}

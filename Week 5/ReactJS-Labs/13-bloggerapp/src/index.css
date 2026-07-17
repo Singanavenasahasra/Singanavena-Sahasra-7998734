@@ -1,0 +1,39 @@
+.dashboardContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.mystyle1, .st2, .v1 {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.st2 {
+  border-left: 4px solid green;
+  border-right: 4px solid green;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-size: 22px;
+  margin: 15px 0 5px 0;
+}
+
+h4, p {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 15px 0;
+}
